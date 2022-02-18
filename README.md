@@ -1,6 +1,6 @@
-### Запросы к БД
+### Р—Р°РїСЂРѕСЃС‹ Рє Р‘Р”
 
-1. Список книг, которые не соответствуют ни одному автору,  и ни одному издательству
+1. РЎРїРёСЃРѕРє РєРЅРёРі, РєРѕС‚РѕСЂС‹Рµ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ РЅРё РѕРґРЅРѕРјСѓ Р°РІС‚РѕСЂСѓ,  Рё РЅРё РѕРґРЅРѕРјСѓ РёР·РґР°С‚РµР»СЊСЃС‚РІСѓ
 ```sql
 select book.name from book
 left join author on author.id = book.id_author
@@ -8,26 +8,26 @@ left join publisher on publisher.id = book.id_publisher
 where author.name is null and publisher is null
 ```
 
-2. Список книг по ID автора или издателя
+2. РЎРїРёСЃРѕРє РєРЅРёРі РїРѕ ID Р°РІС‚РѕСЂР° РёР»Рё РёР·РґР°С‚РµР»СЏ
 ```sql
-select book.name, coalesce(author.name, 'Информации нет') as author from book
+select book.name, coalesce(author.name, 'РРЅС„РѕСЂРјР°С†РёРё РЅРµС‚') as author from book
 left join author on author.id = book.id_author
 where book.id_author=2
 
-select book.name, coalesce(publisher.name, 'Информации нет') as publisher from book
+select book.name, coalesce(publisher.name, 'РРЅС„РѕСЂРјР°С†РёРё РЅРµС‚') as publisher from book
 left join publisher on publisher.id = book.id_publisher
 where book.id_publisher=2
 ```
 
-3. Списоск книг по имена автора или издателя
+3. РЎРїРёСЃРѕСЃРє РєРЅРёРі РїРѕ РёРјРµРЅР° Р°РІС‚РѕСЂР° РёР»Рё РёР·РґР°С‚РµР»СЏ
 ```sql
 select book.name from publisher
 join book on book.id_publisher = publisher.id
-where publisher.name='Издатель 2'
+where publisher.name='РР·РґР°С‚РµР»СЊ 2'
 order by book.id
 
 select book.name from author
 join book on book.id_author = author.id
-where author.name='Автор 1'
+where author.name='РђРІС‚РѕСЂ 1'
 order by book.id
 ```
